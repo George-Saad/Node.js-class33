@@ -9,3 +9,4 @@ function padLeft(val, num, str) {
 }
 
 // YOUR CODE GOES HERE
+const leftPad = require('left-pad')
