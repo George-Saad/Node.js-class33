@@ -1,16 +1,28 @@
 
-/**
- * 3: Party time
- * 
- * After reading the documentation make a request to https://reservation100-sandbox.mxapps.io/rest-doc/api
- * and print the response to the console. Use async-await and try/catch.
- * 
- * Hints:
- * - make sure to use the correct headers and http method in the request
- */
+import fetch from "node-fetch";
 
-function makeReservation() {
-  // YOUR CODE GOES IN HERE
+async function makeReservation() {
+  const reservationBody = {
+    name: "George Saad",
+    numberOfPeople: 2
+  };
+
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(reservationBody)
+  };
+
+  try {
+    const response = await (await fetch('https://reservation100-sandbox.mxapps.io/api/reservations', fetchOptions)).json();
+    //const reservationResponse = await response.json();
+    console.log(response.message);
+  } catch(err) {
+    console.log(err);
+  }
+  
 }
 
 makeReservation();
