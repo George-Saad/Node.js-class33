@@ -1,5 +1,18 @@
-import app from './app.js'
+import express from "express";
+import exphbs from "express-handlebars";
+import weatherRoutes from "./routes/weather.js";
 
-const PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.set("view engine", "handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: false }));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('', weatherRoutes );
+
+
+app.listen(PORT, () => {
+  console.log('Server running on port: ', PORT);
+})
